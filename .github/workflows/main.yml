@@ -20,6 +20,7 @@ jobs:
 
       - run: bun install
       - run: bun run test
+      - run: bun link
       - run: bun run build
       - run: bunx semantic-release --dry-run
         env:
