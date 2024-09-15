@@ -19,9 +19,9 @@
   "module": "dist/esm/index.js",
   "browser": "dist/browser/index.js",
   "types": "dist/types/index.d.ts",
-  "bin": "cli.ts",
+  "bin": "dist/cjs/cli.js",
   "scripts": {
-    "build": "bun-scripty",
+    "build": "bun run scripts/build/index.ts",
     "test": "bun test"
   },
   "config": {
