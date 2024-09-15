@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/dankreiger/bun-scripty/compare/v1.0.1...v1.0.2) (2024-09-15)
+
+
+### Bug Fixes
+
+* log output stream ([583ba8e](https://github.com/dankreiger/bun-scripty/commit/583ba8e8374f354a4ace32cbd0c1343121df757d))
+
 ## [1.0.1](https://github.com/dankreiger/bun-scripty/compare/v1.0.0...v1.0.1) (2024-09-15)
 
 
