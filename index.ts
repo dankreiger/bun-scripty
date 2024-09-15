@@ -1,1 +1,2 @@
-export { mapScriptPathSegmentToFilePaths } from './src/index';
+// For JS API usage
+export * from './src/index';
