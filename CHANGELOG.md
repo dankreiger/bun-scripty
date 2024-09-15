@@ -1,3 +1,10 @@
+## [1.0.4](https://github.com/dankreiger/bun-scripty/compare/v1.0.3...v1.0.4) (2024-09-15)
+
+
+### Bug Fixes
+
+* split exports cleanly ([be2c8a9](https://github.com/dankreiger/bun-scripty/commit/be2c8a999c68f8c5678668b2e9982373ac7e6906))
+
 ## [1.0.3](https://github.com/dankreiger/bun-scripty/compare/v1.0.2...v1.0.3) (2024-09-15)
 
 
