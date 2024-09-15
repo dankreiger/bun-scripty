@@ -1,0 +1,54 @@
+{
+  "name": "bun-scripty",
+  "version": "1.0.0",
+  "description": "Scripty for Bun",
+  "keywords": [
+    "bun",
+    "scripty"
+  ],
+  "bugs": {
+    "url": "https://github.com/dankreiger/bun-scripty/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dankreiger/bun-scripty.git"
+  },
+  "author": "Dan Kreiger <dankreiger@gmail.com>",
+  "type": "module",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "browser": "dist/browser/index.js",
+  "types": "dist/types/index.d.ts",
+  "bin": "cli.ts",
+  "scripts": {
+    "build": "bun-scripty",
+    "test": "bun test"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
+    "@commitlint/prompt-cli": "^19.5.0",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^10.3.3",
+    "@semantic-release/npm": "^12.0.1",
+    "@types/bun": "latest",
+    "bun-plugin-dts": "^0.2.3",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "lefthook": "^1.7.15",
+    "type-fest": "^4.26.1"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  }
+}

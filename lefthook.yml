@@ -1,0 +1,9 @@
+pre-commit:
+  parallel: true
+  commands:
+    build:
+      run: npm run build
+commit-msg:
+  commands:
+    check-commits:
+      run: bunx commitlint --edit
