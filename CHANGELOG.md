@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/dankreiger/bun-scripty/compare/v1.0.0...v1.0.1) (2024-09-15)
+
+
+### Bug Fixes
+
+* update local build script ([c73d70c](https://github.com/dankreiger/bun-scripty/commit/c73d70cbebc56190f0716cb2a45f01db0aa12b82))
+
 # 1.0.0 (2024-09-15)
 
 
