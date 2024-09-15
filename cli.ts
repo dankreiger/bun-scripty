@@ -15,6 +15,9 @@ try {
   }
 
   const proc = Bun.spawn(cmds);
+  const text = await new Response(proc.stdout).text();
+  console.log(text);
+
   await proc.exited;
 } catch (err) {
   console.error(err);
