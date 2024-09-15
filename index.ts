@@ -1,1 +1,1 @@
-export { mapScriptPathSegmentToFilePaths } from './src/utils';
+export { mapScriptPathSegmentToFilePaths } from './src/index';

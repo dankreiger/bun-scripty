@@ -1,24 +1,23 @@
 #!/usr/bin/env bun
 
-import { file } from 'bun';
-import { mapScriptPathSegmentToFilePaths } from './src/utils';
+import {
+  getScriptPath,
+  mapScriptPathSegmentToFilePaths,
+  processStream,
+  spawnProcess,
+} from './src/utils';
 
 try {
-  const res = await mapScriptPathSegmentToFilePaths();
-  const cmds = ['bun', 'run'];
-  if (await file(res.named).exists()) {
-    cmds.push(res.named);
-  } else if (await file(res.indexed).exists()) {
-    cmds.push(res.indexed);
-  } else {
-    throw new Error(`No script file found at ${res.named} or ${res.indexed}`);
-  }
+  const subprocess = await mapScriptPathSegmentToFilePaths()
+    .then(getScriptPath)
+    .then(spawnProcess);
 
-  const proc = Bun.spawn(cmds);
-  const text = await new Response(proc.stdout).text();
-  console.log(text);
+  processStream(subprocess.stdout, process.stdout);
+  processStream(subprocess.stderr, process.stderr);
 
-  await proc.exited;
+  // Wait for the process to exit
+  const exitCode = await subprocess.exited;
+  console.log(`Process exited with code ${exitCode}`);
 } catch (err) {
   console.error(err);
 }
