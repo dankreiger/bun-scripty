@@ -31,7 +31,7 @@ const CONFIG = (
   (item) =>
     ({
       ...item,
-      entrypoints: ['./index.ts', './cli.ts'],
+      entrypoints: ['./index.ts'],
       minify: true,
     } as const satisfies BuildConfig)
 );
