@@ -24,8 +24,9 @@ jobs:
           node-version: 20.17.0
 
       - run: bun install
-        # `bun run test` produces the build
-        # because the tests need access to the binary (see package.json)
+      - run: bun run build
+      - run: bun link
+      - run: bun link bun-scripty
       - run: bun run test
       - run: bunx semantic-release
         env:
