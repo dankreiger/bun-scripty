@@ -22,12 +22,10 @@
   "bin": "bun-scripty",
   "scripts": {
     "build": "concurrently \"bun run build_bun-scripty\" \"bun run build_cli\"",
-    "build_bun-scripty": "bun-scripty",
-    "build_cli": "bun-scripty",
-    "preinstall": "bun link bun-scripty",
-    "pretest": "bun run ./pretest.ts",
+    "build_bun-scripty": "bun run ./scripts/build/bun-scripty.ts",
+    "build_cli": "bun run ./scripts/build/cli.ts",
+    "pretest": "bun run build",
     "test": "bun test",
-    "test:sync": "bun-scripty",
     "test_sync": "bun-scripty"
   },
   "config": {
@@ -45,7 +43,6 @@
     "@semantic-release/npm": "^12.0.1",
     "@types/bun": "latest",
     "bun-plugin-dts": "^0.2.3",
-    "bun-scripty": "link:bun-scripty",
     "commitizen": "^4.3.0",
     "concurrently": "^9.0.1",
     "cz-conventional-changelog": "^3.3.0",

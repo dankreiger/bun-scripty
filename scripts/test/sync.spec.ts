@@ -7,7 +7,7 @@ describe('Test Scripts', () => {
   });
 
   test('running bun test:scripts should call the script at scripts/test/sync.ts', async () => {
-    const res = (await $`bun test:sync`).stdout.toString();
+    const res = (await $`bun test_sync`).stdout.toString();
 
     expect(res).toContain('Hello from scripts/test/sync.ts');
   });
