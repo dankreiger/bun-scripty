@@ -24,6 +24,7 @@ jobs:
           node-version: 20.17.0
 
       - run: bun install
+      - run: bun link && bun link bun-scripty
       - run: bun run test
       - run: bunx semantic-release
         env:
