@@ -24,7 +24,7 @@
     "build": "concurrently \"bun run build_bun-scripty\" \"bun run build_cli\"",
     "build_bun-scripty": "bun-scripty",
     "build_cli": "bun-scripty",
-    "pretest": "bun run build && bun link",
+    "pretest": "./pretest.sh",
     "test": "bun test",
     "test:sync": "bun-scripty",
     "test_sync": "bun-scripty"
