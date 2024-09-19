@@ -19,7 +19,7 @@
   "module": "dist/esm/index.js",
   "browser": "dist/browser/index.js",
   "types": "dist/types/index.d.ts",
-  "bin": "dist/cjs/cli.js",
+  "bin": "cli-executable",
   "scripts": {
     "build": "bun run scripts/build/index.ts",
     "test": "bun test"

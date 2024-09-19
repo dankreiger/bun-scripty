@@ -1,3 +1,3 @@
-export type PartialPkgJSON = {
-  scripts: Record<string, string>;
+export type PartialPkgJSON<L extends string> = {
+  scripts: Record<L, string>;
 };
