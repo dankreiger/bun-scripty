@@ -31,18 +31,12 @@ const CONFIG = (
   (item) =>
     ({
       ...item,
-      entrypoints: ['./index.ts', './cli.ts'],
+      entrypoints: ['./bun-scripty.ts'],
       minify: true,
     } as const satisfies BuildConfig)
 );
 
 // --------------------------------------------
 
-const clean = (type: 'pre' | 'post') =>
-  type === 'pre'
-    ? rm(DIST, { recursive: true, force: true })
-    : rm(`${DIST}/types/index.js`);
-
-await clean('pre');
+await rm(DIST, { recursive: true, force: true });
 await Promise.all(CONFIG.map(Bun.build));
-await clean('post');

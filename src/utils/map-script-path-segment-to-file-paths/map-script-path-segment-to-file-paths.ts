@@ -29,11 +29,13 @@ export const mapScriptPathSegmentToFilePaths = async <
   }
 
   const scriptPathSegment = npm_lifecycle_event.replaceAll(
-    ':',
+    /:|_/gi,
     '/'
   ) as ScriptPathSegment<keyof typeof pkgJSON.scripts>;
 
-  const pathSegment = join(npm_config_local_prefix, 'scripts');
+  const scriptDirectory = pkgJSON.config?.bunScripty?.path ?? 'scripts';
+
+  const pathSegment = join(npm_config_local_prefix, scriptDirectory);
 
   return {
     named: join(pathSegment, `${scriptPathSegment}.ts`),

@@ -23,5 +23,13 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false,
     "noPropertyAccessFromIndexSignature": false
-  }
+  },
+  "includes": [
+    "src",
+    "scripts",
+    "schemas",
+    "errors",
+    "cli.ts",
+    "bun-scripty.ts"
+  ]
 }
