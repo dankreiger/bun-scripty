@@ -24,6 +24,7 @@
     "build": "concurrently \"bun run build_bun-scripty\" \"bun run build_cli\"",
     "build_bun-scripty": "bun-scripty",
     "build_cli": "bun-scripty",
+    "postinstall": "bun link && bun link bun-scripty",
     "pretest": "bun run ./pretest.ts",
     "test": "bun test",
     "test:sync": "bun-scripty",
