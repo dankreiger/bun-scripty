@@ -9,7 +9,7 @@ describe('mapScriptPathSegmentToFilePaths', () => {
   const mockPackageJson = (
     content?: PartialPkgJSON & Record<string, unknown>
   ) =>
-    mock.module(process.env.npm_package_json as string, () => ({
+    mock.module(Bun.env.npm_package_json as string, () => ({
       version: '1.0.0',
       scripts: {
         'test:unit': 'jest',
@@ -85,14 +85,14 @@ describe('mapScriptPathSegmentToFilePaths', () => {
   });
 
   test('throws error when npm_package_json is missing', () => {
-    delete process.env.npm_package_json;
+    delete Bun.env.npm_package_json;
     expect(() => mapScriptPathSegmentToFilePaths('test:unit')).toThrow(
       "Environment variable 'npm_package_json' is not defined"
     );
   });
 
   test('throws error when npm_config_local_prefix is missing', () => {
-    delete process.env.npm_config_local_prefix;
+    delete Bun.env.npm_config_local_prefix;
     expect(() => mapScriptPathSegmentToFilePaths('test:unit')).toThrow(
       "Environment variable 'npm_config_local_prefix' is not defined"
     );

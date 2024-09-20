@@ -11,7 +11,7 @@ export const mapScriptPathSegmentToFilePaths = async <
 >(
   lifecycleEvent: string
 ) => {
-  const { npm_config_local_prefix, npm_package_json } = process.env;
+  const { npm_config_local_prefix, npm_package_json } = Bun.env;
 
   if (!npm_package_json) {
     throw new EnvVarNotDefinedError('npm_package_json');

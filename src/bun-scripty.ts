@@ -7,7 +7,7 @@ import {
 } from './utils';
 
 export async function bunScripty(
-  lifecycleEvent = process.env.npm_lifecycle_event
+  lifecycleEvent = Bun.env.npm_lifecycle_event
 ): Promise<void> {
   try {
     if (!lifecycleEvent) throw new EnvVarNotDefinedError('npm_lifecycle_event');

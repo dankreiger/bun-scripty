@@ -2,7 +2,7 @@
 
 import { $ } from 'bun';
 
-if (!process.env.CI) {
+if (!Bun.env.CI) {
   console.log('Giving tests newest binary...');
   await $`bun run build`;
 } else {
