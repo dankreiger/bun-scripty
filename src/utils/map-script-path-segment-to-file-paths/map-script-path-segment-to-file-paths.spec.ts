@@ -4,8 +4,8 @@ import { join } from '../join';
 import { mapScriptPathSegmentToFilePaths } from './map-script-path-segment-to-file-paths';
 
 describe('mapScriptPathSegmentToFilePaths', () => {
-  const PROJECT_ROOT = process.env.npm_config_local_prefix as string;
-  const originalEnv = { ...process.env };
+  const PROJECT_ROOT = Bun.env.npm_config_local_prefix as string;
+  const originalEnv = { ...Bun.env };
   const mockPackageJson = (
     content?: PartialPkgJSON & Record<string, unknown>
   ) =>
@@ -19,7 +19,7 @@ describe('mapScriptPathSegmentToFilePaths', () => {
     }));
 
   const resetEnv = (env: Record<string, string>) => {
-    process.env = { ...originalEnv, ...env };
+    Object.assign(Bun.env, env);
   };
 
   const expectPaths = (
@@ -75,6 +75,10 @@ describe('mapScriptPathSegmentToFilePaths', () => {
 
   test("can work from a custom directory when specified in the package.json's 'config' field", async () => {
     const scriptsDirectory = 'tools/scripts';
+    resetEnv({
+      npm_config_local_prefix: PROJECT_ROOT,
+      npm_package_json: `${PROJECT_ROOT}/package.json`,
+    });
     await mockPackageJson({
       config: { bunScripty: { path: scriptsDirectory } },
       scripts: { 'test:unit': 'jest' },
@@ -91,8 +95,16 @@ describe('mapScriptPathSegmentToFilePaths', () => {
     );
   });
 
-  test('throws error when npm_config_local_prefix is missing', () => {
+  test('throws error when npm_config_local_prefix is missing', async () => {
+    resetEnv({
+      npm_config_local_prefix: PROJECT_ROOT,
+      npm_package_json: `${PROJECT_ROOT}/package.json`,
+    });
+    await mockPackageJson({
+      scripts: { 'test:unit': 'jest' },
+    });
     delete Bun.env.npm_config_local_prefix;
+
     expect(() => mapScriptPathSegmentToFilePaths('test:unit')).toThrow(
       "Environment variable 'npm_config_local_prefix' is not defined"
     );
