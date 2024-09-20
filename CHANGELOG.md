@@ -1,3 +1,10 @@
+## [1.0.8](https://github.com/dankreiger/bun-scripty/compare/v1.0.7...v1.0.8) (2024-09-20)
+
+
+### Bug Fixes
+
+* use kebab-case in custom dir config ([dc613d7](https://github.com/dankreiger/bun-scripty/commit/dc613d7cd40a9f57e77cc3b9f42db7a1323ba2b8))
+
 ## [1.0.7](https://github.com/dankreiger/bun-scripty/compare/v1.0.6...v1.0.7) (2024-09-20)
 
 
