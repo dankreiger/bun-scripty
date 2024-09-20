@@ -30,7 +30,9 @@ describe('mapScriptPathSegmentToFilePaths', () => {
     return {
       named: join(PROJECT_ROOT, scriptsDirectory, `${scriptSegment}.ts`),
       indexed: join(PROJECT_ROOT, scriptsDirectory, scriptSegment, 'index.ts'),
-    };
+    } as const satisfies Awaited<
+      ReturnType<typeof mapScriptPathSegmentToFilePaths>
+    >;
   };
 
   beforeEach(() => {
@@ -80,7 +82,7 @@ describe('mapScriptPathSegmentToFilePaths', () => {
       npm_package_json: `${PROJECT_ROOT}/package.json`,
     });
     await mockPackageJson({
-      config: { bunScripty: { path: scriptsDirectory } },
+      config: { 'bun-scripty': { path: scriptsDirectory } },
       scripts: { 'test:unit': 'jest' },
     });
 

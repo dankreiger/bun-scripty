@@ -1,9 +1,7 @@
-import { EnvVarNotDefinedError } from '../../errors';
-import type {
-  PartialPkgJSON,
-  ScriptPathDictionary,
-  ScriptPathSegment,
-} from '../../types';
+import type { PartialPkgJSON, ScriptPathDictionary } from '../../types';
+import { extractNpmEnvVars } from '../extract-npm-env-vars';
+import { getScriptPathSegment } from '../get-script-path-segment';
+import { getScriptsPathDir } from '../get-scripts-path-dir';
 import { join } from '../join';
 
 export const mapScriptPathSegmentToFilePaths = async <
@@ -11,28 +9,18 @@ export const mapScriptPathSegmentToFilePaths = async <
 >(
   lifecycleEvent: string
 ) => {
-  const { npm_config_local_prefix, npm_package_json } = Bun.env;
-
-  if (!npm_package_json) {
-    throw new EnvVarNotDefinedError('npm_package_json');
-  }
-  if (!npm_config_local_prefix) {
-    throw new EnvVarNotDefinedError('npm_config_local_prefix');
-  }
-
+  const { npm_config_local_prefix: npmConfigLocalPathDir, npm_package_json } =
+    extractNpmEnvVars();
   const pkgJSON: T = await import(npm_package_json);
   if (!pkgJSON) {
     throw new Error('Failed to import package.json');
   }
 
-  const scriptPathSegment = lifecycleEvent.replaceAll(
-    /:|_/gi,
-    '/'
-  ) as ScriptPathSegment<keyof typeof pkgJSON.scripts>;
+  const scriptPathSegment = getScriptPathSegment(lifecycleEvent);
 
-  const scriptDirectory = pkgJSON.config?.bunScripty?.path ?? 'scripts';
-
-  const pathSegment = join(npm_config_local_prefix, scriptDirectory);
+  const pathSegment = join(
+    getScriptsPathDir({ pkgJSON, npmConfigLocalPathDir })
+  );
 
   return {
     named: join(pathSegment, `${scriptPathSegment}.ts`),
