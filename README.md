@@ -38,33 +38,18 @@ Now, when you run `bun run test`, Bun-Scripty will execute the `scripts/test.ts`
 
 ### Valid Delimiters
 
-Other valid separating delimiters are `:`, `.`, `|`, and `/`. These represent the same pattern i.e. a new folder.
+Other valid separating delimiters are `:`, and `_`. Typically, `:` is the most common delimiter used in npm scripts. However, sometimes it doesn't work well if you are using tab autocomplete - `_` is never an issue in this case.
+
+As an example, the following `package.json` will look for the script in the `scripts/test/unit.ts` file:
 
 ```json
-// All of the examples below will look for the script in the `scripts/test/unit.ts` file
 {
   "scripts": {
     "test:unit": "bun-scripty",
-    "test.unit": "bun-scripty",
-    "test|unit": "bun-scripty",
-    "test/unit": "bun-scripty"
+    "test_unit": "bun-scripty"
   }
 }
 ```
-
-{
-"scripts": {
-"test:unit": "bun-scripty",
-"test.unit": "bun-scripty",
-"test|unit": "bun-scripty",
-"test/unit": "bun-scripty"
-}
-}
-
-```
-
-As of now, the common ':' delimiter works, but bun's zsh autocomplete shows it in a weird way. The other delimiters work as expected
-with the autocomplete.
 
 ## Features
 
@@ -89,4 +74,3 @@ This project is based on the excellent [scripty](https://github.com/testdouble/s
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
-```
