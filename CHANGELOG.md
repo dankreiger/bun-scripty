@@ -1,3 +1,11 @@
+## [1.0.7](https://github.com/dankreiger/bun-scripty/compare/v1.0.6...v1.0.7) (2024-09-20)
+
+
+### Bug Fixes
+
+* use Bex env vars ([2bfbfb4](https://github.com/dankreiger/bun-scripty/commit/2bfbfb458d9eec14cad12df1ad1a1ac027086025))
+* use Bex env vars ([cc67cc7](https://github.com/dankreiger/bun-scripty/commit/cc67cc71a4c687de9cea1c47bfbe220e89ad5147))
+
 ## [1.0.6](https://github.com/dankreiger/bun-scripty/compare/v1.0.5...v1.0.6) (2024-09-20)
 
 
