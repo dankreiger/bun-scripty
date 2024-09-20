@@ -8,13 +8,10 @@ import { join } from '../join';
 
 export const mapScriptPathSegmentToFilePaths = async <
   T extends PartialPkgJSON | undefined = undefined
->() => {
-  const { npm_config_local_prefix, npm_package_json, npm_lifecycle_event } =
-    process.env;
-
-  if (!npm_lifecycle_event) {
-    throw new EnvVarNotDefinedError('npm_lifecycle_event');
-  }
+>(
+  lifecycleEvent: string
+) => {
+  const { npm_config_local_prefix, npm_package_json } = process.env;
 
   if (!npm_package_json) {
     throw new EnvVarNotDefinedError('npm_package_json');
@@ -28,7 +25,7 @@ export const mapScriptPathSegmentToFilePaths = async <
     throw new Error('Failed to import package.json');
   }
 
-  const scriptPathSegment = npm_lifecycle_event.replaceAll(
+  const scriptPathSegment = lifecycleEvent.replaceAll(
     /:|_/gi,
     '/'
   ) as ScriptPathSegment<keyof typeof pkgJSON.scripts>;

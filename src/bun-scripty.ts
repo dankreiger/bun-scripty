@@ -1,4 +1,4 @@
-import { BunScriptyError } from './errors';
+import { BunScriptyError, EnvVarNotDefinedError } from './errors';
 import {
   getScriptPath,
   mapScriptPathSegmentToFilePaths,
@@ -6,9 +6,13 @@ import {
   spawnProcess,
 } from './utils';
 
-export async function bunScripty(): Promise<void> {
+export async function bunScripty(
+  lifecycleEvent = process.env.npm_lifecycle_event
+): Promise<void> {
   try {
-    const subprocess = await mapScriptPathSegmentToFilePaths()
+    if (!lifecycleEvent) throw new EnvVarNotDefinedError('npm_lifecycle_event');
+
+    const subprocess = await mapScriptPathSegmentToFilePaths(lifecycleEvent)
       .then(getScriptPath)
       .then(spawnProcess);
 

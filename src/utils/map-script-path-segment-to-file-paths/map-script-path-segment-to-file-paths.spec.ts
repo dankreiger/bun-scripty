@@ -23,13 +23,13 @@ describe('mapScriptPathSegmentToFilePaths', () => {
   };
 
   const expectPaths = (
-    scriptName: string,
+    scriptSegment: string,
     opts?: { scriptsDirectory: string }
   ) => {
     const { scriptsDirectory = 'scripts' } = opts ?? {};
     return {
-      named: join(PROJECT_ROOT, scriptsDirectory, `${scriptName}.ts`),
-      indexed: join(PROJECT_ROOT, scriptsDirectory, scriptName, 'index.ts'),
+      named: join(PROJECT_ROOT, scriptsDirectory, `${scriptSegment}.ts`),
+      indexed: join(PROJECT_ROOT, scriptsDirectory, scriptSegment, 'index.ts'),
     };
   };
 
@@ -45,12 +45,6 @@ describe('mapScriptPathSegmentToFilePaths', () => {
     mock.restore();
     process.env = originalEnv;
   });
-
-  // test('uses default "scripts" directory when no custom path is specified', async () => {
-  //   await mockPackageJson();
-  //   const result = await mapScriptPathSegmentToFilePaths();
-  //   expect(result).toEqual(expectPaths('test/unit'));
-  // });
 
   test.each([
     {
@@ -71,7 +65,10 @@ describe('mapScriptPathSegmentToFilePaths', () => {
         npm_package_json: `${PROJECT_ROOT}/package.json`,
         npm_config_local_prefix: PROJECT_ROOT,
       });
-      const result = await mapScriptPathSegmentToFilePaths();
+      await mockPackageJson({
+        scripts: { [expectedScript]: 'tsc' },
+      });
+      const result = await mapScriptPathSegmentToFilePaths(lifecycleEvent);
       expect(result).toEqual(expectPaths(expectedScript));
     }
   );
@@ -83,27 +80,20 @@ describe('mapScriptPathSegmentToFilePaths', () => {
       scripts: { 'test:unit': 'jest' },
     });
 
-    const result = await mapScriptPathSegmentToFilePaths();
+    const result = await mapScriptPathSegmentToFilePaths('test:unit');
     expect(result).toEqual(expectPaths('test/unit', { scriptsDirectory }));
   });
 
-  // test('throws error when npm_lifecycle_event is missing', () => {
-  //   delete process.env.npm_lifecycle_event;
-  //   expect(() => mapScriptPathSegmentToFilePaths()).toThrow(
-  //     "Environment variable 'npm_lifecycle_event' is not defined"
-  //   );
-  // });
-
-  // test('throws error when npm_package_json is missing', () => {
-  //   delete process.env.npm_package_json;
-  //   expect(() => mapScriptPathSegmentToFilePaths()).toThrow(
-  //     "Environment variable 'npm_package_json' is not defined"
-  //   );
-  // });
+  test('throws error when npm_package_json is missing', () => {
+    delete process.env.npm_package_json;
+    expect(() => mapScriptPathSegmentToFilePaths('test:unit')).toThrow(
+      "Environment variable 'npm_package_json' is not defined"
+    );
+  });
 
   test('throws error when npm_config_local_prefix is missing', () => {
     delete process.env.npm_config_local_prefix;
-    expect(() => mapScriptPathSegmentToFilePaths()).toThrow(
+    expect(() => mapScriptPathSegmentToFilePaths('test:unit')).toThrow(
       "Environment variable 'npm_config_local_prefix' is not defined"
     );
   });
