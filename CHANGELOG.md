@@ -1,3 +1,15 @@
+## [1.0.5](https://github.com/dankreiger/bun-scripty/compare/v1.0.4...v1.0.5) (2024-09-20)
+
+
+### Bug Fixes
+
+* add bin executable ([5887555](https://github.com/dankreiger/bun-scripty/commit/5887555b13727b6c7cd83894d441d0f0b25bf460))
+* add postinstall hook ([0e6d476](https://github.com/dankreiger/bun-scripty/commit/0e6d4768602450d6e7e8a347bdc969a2068bcbc8))
+* add postinstall hook ([6a638de](https://github.com/dankreiger/bun-scripty/commit/6a638de11438741c13b5d441736b3f0429529a15))
+* ensure builds are ready to be used by the test script ([4d7e6e6](https://github.com/dankreiger/bun-scripty/commit/4d7e6e6ea970b43a41d9c51ba0645133d26edb50))
+* ensure builds are ready to be used by the test script ([d338a10](https://github.com/dankreiger/bun-scripty/commit/d338a10bb385f048d6c0873434ce9878501a47af))
+* make js-api more easily testable ([61451b6](https://github.com/dankreiger/bun-scripty/commit/61451b607f2c1f63e84c02345265c5d52f957d75))
+
 ## [1.0.4](https://github.com/dankreiger/bun-scripty/compare/v1.0.3...v1.0.4) (2024-09-15)
 
 
