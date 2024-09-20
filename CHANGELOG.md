@@ -1,3 +1,10 @@
+## [1.0.6](https://github.com/dankreiger/bun-scripty/compare/v1.0.5...v1.0.6) (2024-09-20)
+
+
+### Bug Fixes
+
+* test macos arch ([c482894](https://github.com/dankreiger/bun-scripty/commit/c482894237a04a830d9345220120f4d6cc33f5b8))
+
 ## [1.0.5](https://github.com/dankreiger/bun-scripty/compare/v1.0.4...v1.0.5) (2024-09-20)
 
 
